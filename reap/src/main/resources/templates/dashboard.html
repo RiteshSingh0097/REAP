@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="js/javascript.js"></script>
+</head>
+<body>
+<div class="bg-light rounded ">
+    <div class="row ">
+        <div class="col-lg-7 mt-3">
+            <img src="images/ReapImg.png">
+            <img src="images/ReapFullFormImg.png">
+
+        </div>
+        <div class="col-lg-5 mt-3">
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item mr-3">
+                    <a class="nav-link active" href="#"><img src="images/DashboardIcon.png">Dashboard</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a class="nav-link active" href="/badges"><img src="images/whitebadge.png">Badges</a>
+                </li>
+
+                <li class="nav-item mr-3">
+                    <a class="nav-link active" href="/adminadmin"><img src="images/whitebadge.png">Admin Panel</a>
+                </li>
+                <li class="nav-item mr-3">
+                    <button type="button" data-toggle="modal" data-target="#UserDetails"><img src="images/default_Male.jpg" style="height: 50px"></button>
+                </li>
+            </ul>
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="UserDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <td>USER NAME</td>
+                                <td>Ritesh Singh</td>
+                            </tr>
+                            <tr>
+                                <td>EMAIL ID</td>
+                                <td>riteshsingh893@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td>COMPETENCY</td>
+                                <td>JVM</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal2-->
+
+        <div class="modal fade" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel2">User Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <h2>DELETE USER</h2>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--MOdal3-->
+
+
+        <div class="modal fade" id="downloadcsv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">User Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <h2>DOWNLOAD USER DETAILS</h2>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--POPUP-->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt-4" >
+        <div class="col-lg-9">
+            <div class="ml-3">
+                <div class="card text-left mb-4">
+                    <div class="card-header bg-primary">
+                        <div class="float-left"><img src="images/whitebadge.png"></div>
+                        <div class="float-left text-light">RECOGNIZE NEWER</div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="float-left ml-2 mr-5">
+                            <i class="fa fa-user "></i>
+                            <input type="text" class="form-control" name="newername">
+                        </div>
+                        <div class="dropdown float-left ml-5 mr-5">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                Badges
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Gold(2)</a>
+                                <a class="dropdown-item" href="#">Silver(4)</a>
+                                <a class="dropdown-item" href="#">Bronze(6)</a>
+                            </div>
+                        </div>
+                        <div class="dropdown float-left ml-5">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                Select a Karma/Core Value
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+                                <a class="dropdown-item" href="#">Karma/Core Value</a>
+
+                            </div>
+                            <br>
+                        </div>
+                        <div class="float-left ml-2 mt-3">
+                            <textarea name="reason" cols="90" rows="8" ></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer btn-primary text-right ">
+                        <button class="btn btn-primary">REGOGNIZE</button>
+                    </div>
+                </div>
+                <div>
+                    <div class="card text-left">
+                        <div class="card-header bg-primary ">
+                            <div class="float-left mr-4">
+                                <div class="float-left"> <img src="images/whitebadge.png"></div>
+                                <div class="float-left text-light"> WALL OF FAME</div>
+
+                            </div>
+                            <div class="float-left">
+                                <input type="search" name="searchbox" placeholder="Search" class="form-control">
+                            </div>
+                            <div class="dropdown float-left ml-4">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Business Unit
+                                </button>
+                                <div class="dropdown-menu ">
+                                    <a class="dropdown-item" href="#">UNIT 1</a>
+                                    <a class="dropdown-item" href="#">UNIT 1</a>
+                                    <a class="dropdown-item" href="#">UNIT 1</a>
+                                </div>
+                            </div>
+                            <div class="dropdown float-left ml-5">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Region
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Region 1</a>
+                                    <a class="dropdown-item" href="#">Region 1</a>
+                                    <a class="dropdown-item" href="#">Region 1</a>
+                                </div>
+                            </div>
+                            <div >
+                                <button type="button" data-toggle="modal" data-target="#deleteuser" class="ml-3"><img src="images/icons8-trash-32.png" /></button>
+                                <button type="button" data-toggle="modal" data-target="#downloadcsv" class="ml-3"><img src="images/download.png" /></button>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="media">
+                                <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                                <div class="media-body">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div >
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card text-left ">
+                <div class="card-header bg-primary ">
+                    <div class="float-left">
+                        <img src="images/whitebadge.png">
+                    </div>
+                    <div class="float-left text-light">
+                        MY BADGES
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                        <div class="media-body">
+                            <h6>Ritesh Singh</h6>
+                            <img src="images/OrangeBadge.png" class="mr-3">
+                            <img src="images/GreyBadge.png" class="mr-3">
+                            <img src="images/BrownBadge.png" >
+                            <br>
+                            <span class="mr-4">
+                             2
+                         </span>
+                            <span class="mr-4">
+                             2
+                         </span>
+                            <span>
+                             2
+                         </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="card text-left mt-5">
+                <div class="card-header bg-primary ">
+                    <div class="float-left">
+                        <img src="images/whitebadge.png">
+                    </div>
+                    <div class="float-left text-light">
+                        NEWER'S BOARD(LAST & DAYS)
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                        <div class="media-body">
+                            <h6>Ritesh Singh</h6>
+                            <img src="images/OrangeBadge.png" class="mr-3">
+                            <img src="images/GreyBadge.png" class="mr-3">
+                            <img src="images/BrownBadge.png" >
+                            <br>
+                            <span class="mr-4">
+                             2
+                         </span>
+                            <span class="mr-4">
+                             2
+                         </span>
+                            <span>
+                             2
+                         </span>
+
+                        </div>
+
+                    </div>   <div class="media">
+                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                    <div class="media-body">
+                        <h6>Ritesh Singh</h6>
+                        <img src="images/OrangeBadge.png" class="mr-3">
+                        <img src="images/GreyBadge.png" class="mr-3">
+                        <img src="images/BrownBadge.png" >
+                        <br>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span>
+                             2
+                         </span>
+
+                    </div>
+
+                </div>   <div class="media">
+                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                    <div class="media-body">
+                        <h6>Ritesh Singh</h6>
+                        <img src="images/OrangeBadge.png" class="mr-3">
+                        <img src="images/GreyBadge.png" class="mr-3">
+                        <img src="images/BrownBadge.png" >
+                        <br>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span>
+                             2
+                         </span>
+
+                    </div>
+
+                </div>   <div class="media">
+                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                    <div class="media-body">
+                        <h6>Ritesh Singh</h6>
+                        <img src="images/OrangeBadge.png" class="mr-3">
+                        <img src="images/GreyBadge.png" class="mr-3">
+                        <img src="images/BrownBadge.png" >
+                        <br>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span>
+                             2
+                         </span>
+
+                    </div>
+
+                </div>   <div class="media">
+                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                    <div class="media-body">
+                        <h6>Ritesh Singh</h6>
+                        <img src="images/OrangeBadge.png" class="mr-3">
+                        <img src="images/GreyBadge.png" class="mr-3">
+                        <img src="images/BrownBadge.png" >
+                        <br>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span>
+                             2
+                         </span>
+
+                    </div>
+
+                </div>   <div class="media">
+                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                    <div class="media-body">
+                        <h6>Ritesh Singh</h6>
+                        <img src="images/OrangeBadge.png" class="mr-3">
+                        <img src="images/GreyBadge.png" class="mr-3">
+                        <img src="images/BrownBadge.png" >
+                        <br>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span>
+                             2
+                         </span>
+
+                    </div>
+
+                </div>   <div class="media">
+                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
+                    <div class="media-body">
+                        <h6>Ritesh Singh</h6>
+                        <img src="images/OrangeBadge.png" class="mr-3">
+                        <img src="images/GreyBadge.png" class="mr-3">
+                        <img src="images/BrownBadge.png" >
+                        <br>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span class="mr-4">
+                             2
+                         </span>
+                        <span>
+                             2
+                         </span>
+
+                    </div>
+
+                </div>
+
+                </div>
+
+
+            </div>
+            <div >
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</html>
