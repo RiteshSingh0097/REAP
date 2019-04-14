@@ -1,9 +1,37 @@
 <!DOCTYPE html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/my-fragments :: header-fragment">
+<head th:replace="fragments/my-fragments :: header-fragment"></head>
 <body>
-<div th:replace="fragments/my-fragments :: navbar-fragment"></div>
+
+<nav class="navbar navbar-light bg-white navbar-expand-lg sticky-top">
+    <a class="navbar-brand" href="#">
+        <img src="/images/reap-logo.png" height="30" class="d-inline-block align-top" alt="reap-logo">
+    </a>
+    <!-- Hide on screens smaller than lg -->
+    <span class="navbar-text d-none d-lg-block">
+    <span class="reap-text" style="color: #bd3fb4">reward.</span>
+    <span class="reap-text" style="color: #004ba1">earn.</span>
+    <span class="reap-text" style="color: #f03434">acknowledge.</span>
+    <span class="reap-text" style="color: #eacb11">praise</span>
+  </span>
+</nav>
 <div class="container mx-auto my-5 p-4" style="background: #fff; width: 70%;">
+    <div th:if="${error}">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong th:text="${error}"></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    <div th:if="${success}">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong th:text="${success}"></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link" id="nav-login-tab" data-toggle="tab" href="#nav-login" role="tab"
@@ -15,23 +43,25 @@
     <div class="tab-content p-4" id="nav-tabContent">
         <div class="tab-pane fade" id="nav-login" role="tabpanel" aria-labelledby="nav-login-tab">
             <!-- Login form -->
-            <form th:action="@{/logins}" method="post" >
+            <form th:action="@{/login}" method="post">
                 <div class="newer-row form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
+                    <input type="email" class="form-control" th:name="email" placeholder="Email address" required
                            autofocus>
                 </div>
 
                 <div class="newer-row form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" class="form-control" th:name="password" placeholder="Password" required>
                 </div>
                 <div class="newer-row">
-                    <a href="#" class="small">Forgot password?</a>
+                    <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#forgotPassword">Forgot Password</a>
                 </div>
                 <div class="newer-row">
                     <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
+                    <br/>
                 </div>
             </form>
         </div>
+
         <div class="tab-pane fade show active" id="nav-signup" role="tabpanel" aria-labelledby="nav-signup-tab">
             <!-- Signup form -->
             <form th:action="@{/users}" method="post" th:object="${newUser}" enctype="multipart/form-data">
@@ -63,7 +93,8 @@
                            th:errors="*{password}"></small>
                 </div>
                 <div class="custom-file form-group newer-row">
-                    <input type="file" th:field="*{photo}" class="custom-file-input form-control-file">
+                    <input type="file" accept="image/*" name="image" th:field="*{photo}"
+                           class="custom-file-input form-control-file">
                     <label class="custom-file-label" id="inputPhoto" for="inputPhoto">Choose image</label>
                 </div>
                 <div class="newer-row">
@@ -73,15 +104,44 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="forgotPassword" role="dialog" >
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title align-content-center">Forgot Password</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your Email address.</p>
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <form th:action="@{/setNewPassword}" method="post" enctype="multipart/form-data">
+                            <div class="newer-row form-label-group">
+                                <input type="email" th:name="email"  class="form-control"
+                                       placeholder="Email address" required
+                                       autofocus>
+                            </div>
+
+                            <div class="modal-footer">
+                                <div class="form-group">
+
+                                    <button type="submit" class="btn btn-primary">Reset Password</button>
+
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div th:replace="fragments/my-fragments :: footer-fragment"></div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('input[type="file"]').change(function (e) {
-                var fileName = e.target.files[0].name;
-                $("#inputPhoto").text(fileName);
-                console.log(fileName);
-            });
-        });
-</script>
 </body>
 </html>

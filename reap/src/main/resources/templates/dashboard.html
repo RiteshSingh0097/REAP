@@ -1,460 +1,456 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="js/javascript.js"></script>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/my-fragments :: header-fragment"></head>
 <body>
-<div class="bg-light rounded ">
-    <div class="row ">
-        <div class="col-lg-7 mt-3">
-            <img src="images/ReapImg.png">
-            <img src="images/ReapFullFormImg.png">
 
-        </div>
-        <div class="col-lg-5 mt-3">
-            <ul class="nav nav-pills justify-content-center">
-                <li class="nav-item mr-3">
-                    <a class="nav-link active" href="#"><img src="images/DashboardIcon.png">Dashboard</a>
-                </li>
-                <li class="nav-item mr-3">
-                    <a class="nav-link active" href="/badges"><img src="images/whitebadge.png">Badges</a>
-                </li>
+    <div>
+        <nav  class="navbar navbar-light bg-white navbar-expand-lg sticky-top">
+            <a class="navbar-brand" href="#">
+                <img th:src="@{~/images/reap-logo.png}" height="30" class="d-inline-block align-top" alt="reap-logo">
+            </a>
 
-                <li class="nav-item mr-3">
-                    <a class="nav-link active" href="/adminadmin"><img src="images/whitebadge.png">Admin Panel</a>
-                </li>
-                <li class="nav-item mr-3">
-                    <button type="button" data-toggle="modal" data-target="#UserDetails"><img src="images/default_Male.jpg" style="height: 50px"></button>
-                </li>
-            </ul>
+            <span class="navbar-text d-none d-lg-block">
+            <span class="reap-text" style="color: #bd3fb4">reward.</span>
+            <span class="reap-text" style="color: #004ba1">earn.</span>
+            <span class="reap-text" style="color: #f03434">acknowledge.</span>
+            <span class="reap-text" style="color: #eacb11">praise</span>
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span style="color: #fff;" class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/users/' + ${user.getUserId()}}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/users/' + ${user.getUserId()} + '/recognitions'}">My Recognitions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/items/' + ${user.getUserId()}}">Redeem points</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                           href="#"
+                           id="navbarDropdown"><i class="far fa-user-circle"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right p-3" aria-labelledby="navbarDropdown">
+                            <h5 class="text-center">Your Profile</h5>
+                            <hr/>
+                            <div class="row no-gutters">
+                                <div class="col-md-4 text-center">
+                                    <img th:src="@{${user.getPhotoPath()}}" height="95" width="90">
 
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="UserDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table>
-                            <tr>
-                                <td>USER NAME</td>
-                                <td>Ritesh Singh</td>
-                            </tr>
-                            <tr>
-                                <td>EMAIL ID</td>
-                                <td>riteshsingh893@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>COMPETENCY</td>
-                                <td>JVM</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Logout</button>
-                    </div>
-                </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <small>Name</small>
+                                        </div>
+                                        <div class="col-md-8" th:text="${user.getFullName()}"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <small>Business Unit</small>
+                                        </div>
+                                        <div class="col-md-8">Technology</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <small>Region</small>
+                                        </div>
+                                        <div class="col-md-8">Ninjas</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <small>Email</small>
+                                        </div>
+                                        <div class="col-md-8" th:text="${user.getEmail()}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-2">
+                                <button id="logoutButton" type="button" class="btn btn-danger btn-block">Logout</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </div>
-        <!--Modal2-->
-
-        <div class="modal fade" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel2">User Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table>
-                            <h2>DELETE USER</h2>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Logout</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--MOdal3-->
-
-
-        <div class="modal fade" id="downloadcsv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">User Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table>
-                            <h2>DOWNLOAD USER DETAILS</h2>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Logout</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-        <!--POPUP-->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+        </nav>
     </div>
-    <div class="row mt-4" >
-        <div class="col-lg-9">
-            <div class="ml-3">
-                <div class="card text-left mb-4">
-                    <div class="card-header bg-primary">
-                        <div class="float-left"><img src="images/whitebadge.png"></div>
-                        <div class="float-left text-light">RECOGNIZE NEWER</div>
 
-                    </div>
-                    <div class="card-body">
-                        <div class="float-left ml-2 mr-5">
-                            <i class="fa fa-user "></i>
-                            <input type="text" class="form-control" name="newername">
-                        </div>
-                        <div class="dropdown float-left ml-5 mr-5">
-                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                                Badges
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Gold(2)</a>
-                                <a class="dropdown-item" href="#">Silver(4)</a>
-                                <a class="dropdown-item" href="#">Bronze(6)</a>
-                            </div>
-                        </div>
-                        <div class="dropdown float-left ml-5">
-                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                                Select a Karma/Core Value
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-                                <a class="dropdown-item" href="#">Karma/Core Value</a>
-
-                            </div>
-                            <br>
-                        </div>
-                        <div class="float-left ml-2 mt-3">
-                            <textarea name="reason" cols="90" rows="8" ></textarea>
-                        </div>
-                    </div>
-                    <div class="card-footer btn-primary text-right ">
-                        <button class="btn btn-primary">REGOGNIZE</button>
-                    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="far fa-star"></i> Recognize Newer
                 </div>
-                <div>
-                    <div class="card text-left">
-                        <div class="card-header bg-primary ">
-                            <div class="float-left mr-4">
-                                <div class="float-left"> <img src="images/whitebadge.png"></div>
-                                <div class="float-left text-light"> WALL OF FAME</div>
-
-                            </div>
-                            <div class="float-left">
-                                <input type="search" name="searchbox" placeholder="Search" class="form-control">
-                            </div>
-                            <div class="dropdown float-left ml-4">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Business Unit
-                                </button>
-                                <div class="dropdown-menu ">
-                                    <a class="dropdown-item" href="#">UNIT 1</a>
-                                    <a class="dropdown-item" href="#">UNIT 1</a>
-                                    <a class="dropdown-item" href="#">UNIT 1</a>
+                <div class="card-body">
+                    <!-- Recognition form -->
+                    <form id="recognitionForm" th:action="@{/recognize}" method="post" th:object="${recognition}">
+                        <input type="hidden" th:value="${user.getUserId()}" name="senderId" id="senderId"/>
+                        <input type="hidden" th:value="${user.getFullName()}" name="senderName" id="senderName"/>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="far fa-user"></i></div>
+                                    </div>
+                                    <input type="text" id="userNameToRecognize" th:field="*{receiverName}" class="form-control" required
+                                           placeholder="Select a Newer">
                                 </div>
                             </div>
-                            <div class="dropdown float-left ml-5">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                                    Region
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Region 1</a>
-                                    <a class="dropdown-item" href="#">Region 1</a>
-                                    <a class="dropdown-item" href="#">Region 1</a>
-                                </div>
+                            <div class="col-md-3 mb-3">
+                                <select th:field="*{badge}" class="form-control" required>
+                                    <option disabled selected value="">Select a Badge</option>
+                                    <option th:disabled="${user.getGoldShareable() lt 1}"
+                                            data-thumbnail="/images/gold.png" value="gold">Gold
+                                        <small th:text="'(' + ${user.getGoldShareable()} + ')'"></small>
+                                    </option>
+                                    <option th:disabled="${user.getSilverShareable() lt 1}"
+                                            data-thumbnail="/images/silver.png" value="silver">Silver
+                                        <small th:text="'(' + ${user.getSilverShareable()} + ')'"></small>
+                                    </option>
+                                    <option th:disabled="${user.getBronzeShareable() lt 1}"
+                                            data-thumbnail="/images/bronze.png" value="bronze">Bronze
+                                        <small th:text="'(' + ${user.getBronzeShareable()} + ')'"></small>
+                                    </option>
+                                </select>
                             </div>
-                            <div >
-                                <button type="button" data-toggle="modal" data-target="#deleteuser" class="ml-3"><img src="images/icons8-trash-32.png" /></button>
-                                <button type="button" data-toggle="modal" data-target="#downloadcsv" class="ml-3"><img src="images/download.png" /></button>
-
+                            <div class="col-md-3 mb-3">
+                                <select class="form-control" th:field="*{reason}" required>
+                                    <option disabled selected value="">Select a Karma/Core Value</option>
+                                    <option value="k-customer-delight">Karma: Customer Delight</option>
+                                    <option value="k-extra-miler">Karma: Extra Miler</option>
+                                    <option value="k-knowledge-sharing">Karma: Knowledge Sharing</option>
+                                    <option value="k-mentorship">Karma: Mentorship</option>
+                                    <option value="k-pat-on-the-back">Karma: Pat on the Back</option>
+                                    <option value="cv-continuous-learning-improvement">Core Value: Continuous
+                                        Learning and Improvement
+                                    </option>
+                                    <option value="cv-contribution">Core Value: Contribution</option>
+                                    <option value="cv-diligence">Core Value: Diligence</option>
+                                    <option value="cv-empathy">Core Value: Empathy</option>
+                                    <option value="cv-openness-feedback-change">Core Value: Openness to Feedback and
+                                        Change
+                                    </option>
+                                    <option value="cv-responsible-freedom">Core Value: Responsible Freedom</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="media">
-                                <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                                <div class="media-body">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
-                                </div>
-
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="reasonTextArea" style="font-weight: bold;">Comments</label>
+                                <textarea th:field="*{comment}" rows="5" style="resize: none" class="form-control"
+                                          id="reasonTextArea"
+                                          placeholder="Please select a karma/core value first"
+                                          required></textarea>
+                                <small class="text-danger error" th:if="${#fields.hasErrors('comment')}"
+                                       th:errors="*{comment}"></small>
                             </div>
-
                         </div>
-                    </div>
+                        <div class="row justify-content-end">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn-block btn btn-success">Recognize</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div >
+            <!-- -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-trophy"></i> Wall of Fame
+                    <form id="searchRecognitions" th:action="@{/searchRecognitionByName}"
+                          style="display: inline-block"
+                          class="form-inline">
+                        <input type="hidden" th:value="${user.getUserId()}" name="currentUserId" id="currentUserId"/>
+                        <input type="text" id="recognizedUserName" th:name="fullName" class="form-control form-control-sm"
+                                autocomplete="off"
+                               placeholder="Search">
+                        <button id="searchRecognitionButton" class="btn btn-success btn-sm" type="button">Search
+                        </button>
+                    </form>
+                    <span th:if="${isAdmin}" class="dropdown">
+                        <a href="#" role="button" id="downloadDropdownLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" class="mx-1">
+                            <i class="far fa-save"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="downloadDropdownLink">
+                            <a id="downloadToday" th:href="@{/downloadCSV/today}" class="dropdown-item"
+                               style="text-transform: initial;">Today</a>
+                            <a id="downloadYesterday" th:href="@{/downloadCSV/yesterday}" class="dropdown-item"
+                               style="text-transform: initial;">Yesterday</a>
+                            <a id="downloadLast7Days" th:href="@{/downloadCSV/last7}" class="dropdown-item"
+                               style="text-transform: initial;">Last 7 days</a>
+                            <a id="downloadLast30Days" th:href="@{/downloadCSV/last30}" class="dropdown-item"
+                               style="text-transform: initial;">Last 30 days</a>
+                        </div>
+                    </span>
+                    <span class="dropdown">
+                        <a href="#" role="button" id="dateDropdownLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" class="mx-1">
+                            <i class="far fa-calendar-alt"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dateDropdownLink">
+                            <a id="dateToday" class="dropdown-item" style="text-transform: initial;">Today</a>
+                            <a id="dateYesterday" class="dropdown-item" style="text-transform: initial;">Yesterday</a>
+                            <a id="dateLast7Days" class="dropdown-item" style="text-transform: initial;">Last 7 days</a>
+                            <a id="dateLast30Days" class="dropdown-item"
+                               style="text-transform: initial;">Last 30 days</a>
+                        </div>
+                    </span>
+                </div>
+
+                <div style="display: none" id="recognitionResults"
+                     class="alert alert-success fade show" role="alert">
+                    <h4 class="alert-heading">Search results</h4>
+                    <hr>
+                    <div class="row newer-row align-items-center">
+                        <div class="col-sm-2 text-center">
+                            <i class="far fa-user-circle"></i>
+                        </div>
+                        <div class="col-sm-10" id="userdataDiv">
+                            <p id="userdata"></p>
+                        </div>
+                    </div>
+                    <p class="mb-0"></p>
+                </div>
+
+                <div class="card-body" th:each="recognition: ${recognitionList}">
+                    <div class="row newer-row align-items-center">
+                        <div class="col-sm-2 text-center">
+                            <i class="far fa-user-circle"></i>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" style="display: none" th:name="recognitionIdToRevoke"
+                                   th:value="${recognition.getId()}"/>
+                            <button th:if="${isAdmin}" type="button"
+                                    th:disabled="${recognition.getRevoked()}"
+                                    class="revokeRecognitionButtonClass float-right btn btn-sm btn-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                            <p><strong th:text="${recognition.getReceiverName()}"></strong>
+                                has received a
+                                <span th:if="${recognition.badge}=='gold'">
+                                    <img src="/images/gold.png">
+                                </span>
+                                <span th:if="${recognition.badge}=='silver'">
+                                    <img src="/images/silver.png">
+                                </span>
+                                <span th:if="${recognition.badge}=='bronze'">
+                                    <img src="/images/bronze.png">
+                                </span>
+                                from
+                                <strong th:text="${recognition.getSenderName()}"></strong><br/>
+                                for <em th:text="${recognition.getReason()}"></em><br/>
+                                because <em th:text="${recognition.getComment()}"></em>
+                            </p>
+                            <small th:text="'On ' + ${recognition.getDate()}"></small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="card text-left ">
-                <div class="card-header bg-primary ">
-                    <div class="float-left">
-                        <img src="images/whitebadge.png">
-                    </div>
-                    <div class="float-left text-light">
-                        MY BADGES
-                    </div>
-
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="far fa-star"></i> My Redeemable Badges
                 </div>
                 <div class="card-body">
-                    <div class="media">
-                        <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                        <div class="media-body">
-                            <h6>Ritesh Singh</h6>
-                            <img src="images/OrangeBadge.png" class="mr-3">
-                            <img src="images/GreyBadge.png" class="mr-3">
-                            <img src="images/BrownBadge.png" >
-                            <br>
-                            <span class="mr-4">
-                             2
-                         </span>
-                            <span class="mr-4">
-                             2
-                         </span>
-                            <span>
-                             2
-                         </span>
-
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <img th:src="@{${user.getPhotoPath()}}" height="95" width="90">
                         </div>
-
+                        <div class="col-9">
+                            <strong th:text="${user.getFullName()}"></strong><br/>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="/images/gold.png">
+                                    <small th:text="${user.getGoldRedeemable()}"></small>
+                                </div>
+                                <div class="col-3">
+                                    <img src="/images/silver.png">
+                                    <small th:text="${user.getSilverRedeemable()}"></small>
+                                </div>
+                                <div class="col-3">
+                                    <img src="/images/bronze.png">
+                                    <small th:text="${user.getBronzeRedeemable()}"></small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <strong th:text="${user.getPoints()}"></strong>
+                                    <strong> points</strong>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
-            <div class="card text-left mt-5">
-                <div class="card-header bg-primary ">
-                    <div class="float-left">
-                        <img src="images/whitebadge.png">
-                    </div>
-                    <div class="float-left text-light">
-                        NEWER'S BOARD(LAST & DAYS)
-                    </div>
-
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="far fa-star"></i> My Shareable Badges
                 </div>
                 <div class="card-body">
-                    <div class="media">
-                        <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                        <div class="media-body">
-                            <h6>Ritesh Singh</h6>
-                            <img src="images/OrangeBadge.png" class="mr-3">
-                            <img src="images/GreyBadge.png" class="mr-3">
-                            <img src="images/BrownBadge.png" >
-                            <br>
-                            <span class="mr-4">
-                             2
-                         </span>
-                            <span class="mr-4">
-                             2
-                         </span>
-                            <span>
-                             2
-                         </span>
-
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <img th:src="@{${user.getPhotoPath()}}" height="95" width="90">
                         </div>
-
-                    </div>   <div class="media">
-                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                    <div class="media-body">
-                        <h6>Ritesh Singh</h6>
-                        <img src="images/OrangeBadge.png" class="mr-3">
-                        <img src="images/GreyBadge.png" class="mr-3">
-                        <img src="images/BrownBadge.png" >
-                        <br>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span>
-                             2
-                         </span>
-
+                        <div class="col-9">
+                            <strong th:text="${user.getFullName()}"></strong><br/>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="/images/gold.png">
+                                    <small th:text="${user.getGoldShareable()}"></small>
+                                </div>
+                                <div class="col-3">
+                                    <img src="/images/silver.png">
+                                    <small th:text="${user.getSilverShareable()}"></small>
+                                </div>
+                                <div class="col-3">
+                                    <img src="/images/bronze.png">
+                                    <small th:text="${user.getBronzeShareable()}"></small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                </div>   <div class="media">
-                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                    <div class="media-body">
-                        <h6>Ritesh Singh</h6>
-                        <img src="images/OrangeBadge.png" class="mr-3">
-                        <img src="images/GreyBadge.png" class="mr-3">
-                        <img src="images/BrownBadge.png" >
-                        <br>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span>
-                             2
-                         </span>
-
-                    </div>
-
-                </div>   <div class="media">
-                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                    <div class="media-body">
-                        <h6>Ritesh Singh</h6>
-                        <img src="images/OrangeBadge.png" class="mr-3">
-                        <img src="images/GreyBadge.png" class="mr-3">
-                        <img src="images/BrownBadge.png" >
-                        <br>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span>
-                             2
-                         </span>
-
-                    </div>
-
-                </div>   <div class="media">
-                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                    <div class="media-body">
-                        <h6>Ritesh Singh</h6>
-                        <img src="images/OrangeBadge.png" class="mr-3">
-                        <img src="images/GreyBadge.png" class="mr-3">
-                        <img src="images/BrownBadge.png" >
-                        <br>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span>
-                             2
-                         </span>
-
-                    </div>
-
-                </div>   <div class="media">
-                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                    <div class="media-body">
-                        <h6>Ritesh Singh</h6>
-                        <img src="images/OrangeBadge.png" class="mr-3">
-                        <img src="images/GreyBadge.png" class="mr-3">
-                        <img src="images/BrownBadge.png" >
-                        <br>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span>
-                             2
-                         </span>
-
-                    </div>
-
-                </div>   <div class="media">
-                    <img class="d-flex mr-3"src="images/default_Male.jpg" style="height: 50px">
-                    <div class="media-body">
-                        <h6>Ritesh Singh</h6>
-                        <img src="images/OrangeBadge.png" class="mr-3">
-                        <img src="images/GreyBadge.png" class="mr-3">
-                        <img src="images/BrownBadge.png" >
-                        <br>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span class="mr-4">
-                             2
-                         </span>
-                        <span>
-                             2
-                         </span>
-
-                    </div>
-
                 </div>
-
-                </div>
-
-
             </div>
-            <div >
-
+            <div class="card">
+                <div class="card-header">
+                    <i class="far fa-calendar-alt"></i> Newers Board
+                </div>
+                <div class="card-body" th:each="recognizedUserRedeemableBadgeEntry: ${recognizedUserRedeemableBadges}">
+                    <div class="row newer-row justify-content-center">
+                        <div class="col-3">
+                            <i class="far fa-user-circle"></i>
+                        </div>
+                        <div class="col-9">
+                            <strong th:text="${recognizedUserRedeemableBadgeEntry.key}"></strong><br/>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="/images/gold.png">
+                                    <small th:text="${recognizedUserRedeemableBadgeEntry.value[0]}"></small>
+                                </div>
+                                <div class="col-3">
+                                    <img src="/images/silver.png">
+                                    <small th:text="${recognizedUserRedeemableBadgeEntry.value[1]}"></small>
+                                </div>
+                                <div class="col-3">
+                                    <img src="/images/bronze.png">
+                                    <small th:text="${recognizedUserRedeemableBadgeEntry.value[2]}"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="container" id="main">
+        <h1 class="display-4" th:if="${isAdmin}">User details</h1>
+        <div class="table-responsive">
+            <table class="text-center table table-light table-bordered" th:if="${isAdmin}">
+                <thead>
+                <tr class="table-success">
+                    <th style="display: none" scope="col">ID</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Roles</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Gold redeemable</th>
+                    <th scope="col">Silver redeemable</th>
+                    <th scope="col">Bronze redeemable</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user: ${users}">
+                    <form th:method="put" th:action="@{'/users/' + ${user.getUserId()}}" th:id="${'userDetailsForm' + user.getUserId()}">
+                        <th style="display: none" scope="row">
+                            <input hidden type="text" name="id" th:value="${user.getUserId()}"/>
+                        </th>
+                        <th scope="row" th:text="${user.getUserId()}"></th>
+                        <td>
+                            <img class="img-fluid user-photo"
+                                 th:src="@{${user.getPhotoPath()}}"/>
+                        </td>
+
+                        <td th:text="${user.getFullName()}"></td>
+
+                        <td th:text="${user.getEmail()}"></td>
+                        <td th:with="roleSet = ${user.getRoleSet()}">
+                            <div class="form-check">
+                                <input name="adminCheck"
+                                       th:checked="${#sets.contains(roleSet, T(com.ttn.reap.entities.Role).ADMIN)}"
+                                       class="form-check-input" type="checkbox" id="adminCheck">
+                                <label style="width: 10em" class="form-check-label" for="adminCheck">
+                                    Admin
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input name="practiceHeadCheck"
+                                       th:checked="${#sets.contains(roleSet, T(com.ttn.reap.entities.Role).PRACTICE_HEAD)}"
+                                       class="form-check-input" type="checkbox" id="practiceHeadCheck">
+                                <label style="width: 10em" class="form-check-label" for="practiceHeadCheck">
+                                    Practice head
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input name="supervisorCheck"
+                                       th:checked="${#sets.contains(roleSet, T(com.ttn.reap.entities.Role).SUPERVISOR)}"
+                                       class="form-check-input" type="checkbox" id="supervisorCheck">
+                                <label style="width: 10em" class="form-check-label" for="supervisorCheck">
+                                    Supervisor
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input name="userCheck"
+                                       th:checked="${#sets.contains(roleSet, T(com.ttn.reap.entities.Role).USER)}"
+                                       class="form-check-input" type="checkbox" id="userCheck">
+                                <label style="width: 10em" class="form-check-label" for="userCheck">
+                                    User
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input name="active" class="form-check-input" type="checkbox"
+                                       th:checked="${user.getActive()}"/>
+                            </div>
+                        </td>
+                        <td>
+                            <input name="goldRedeemable" style="width: 3em" type="number" min="0"
+                                   th:value="${user.getGoldRedeemable()}"/>
+                        </td>
+                        <td>
+                            <input name="silverRedeemable" style="width: 3em" type="number" min="0"
+                                   th:value="${user.getSilverRedeemable()}"/>
+                        </td>
+                        <td>
+                            <input name="bronzeRedeemable" style="width: 3em" type="number" min="0"
+                                   th:value="${user.getBronzeRedeemable()}"/>
+                        </td>
+                        <td th:text="${user.points}"></td>
+                        <td>
+                            <button type="submit" class="btn-sm btn btn-primary">Save</button>
+                        </td>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+<div th:replace="fragments/my-fragments :: footer-fragment"></div>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </html>
