@@ -13,7 +13,6 @@ public class EmailService {
     @Autowired
     public JavaMailSender javaMailSender;
 
-    @Async
     public void sendMail(User user, String appUrl){
         SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
         passwordResetEmail.setTo(user.getEmail());

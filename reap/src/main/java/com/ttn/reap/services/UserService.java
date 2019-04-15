@@ -18,10 +18,7 @@ public class UserService {
     public User save(User user) {
         User userToSave = setBadges(user);
         userToSave.setPoints(calculatePoints(userToSave));
-        System.out.println(user.getFirstName());
-        System.out.println(user.getLastName());
         userToSave.setFullName(user.getFirstName() + " " + user.getLastName());
-        System.out.println(user.getFullName());
         return userRepository.save(userToSave);
     }
 

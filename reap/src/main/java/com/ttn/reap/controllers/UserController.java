@@ -96,21 +96,25 @@ public class UserController {
     }
 
     @PostMapping("/setNewPassword")
-    public String setNewPassword(@RequestParam("email") String email, Model model, HttpServletRequest request){
+    public ModelAndView setNewPassword(@RequestParam("email") String email, HttpServletRequest request, RedirectAttributes redirectAttributes){
         Optional<User> user = userService.findByEmail(email);
 
         if (!user.isPresent()){
-            model.addAttribute("error","We didn't find an account for that e-mail address.");
-        }else {
-            user.get().setResetToken((UUID.randomUUID().toString()));
-            userService.save(user.get());
-
-            String appUrl = request.getScheme() + "://" + request.getServerName();
-            emailService.sendMail(user.get(),appUrl);
-            model.addAttribute("newUser",user);
-            model.addAttribute("success","A password reset link has been sent to "+user.get().getEmail());
+            ModelAndView modelAndView = new ModelAndView("redirect:/");
+            redirectAttributes.addFlashAttribute("error","We didn't find an account for that e-mail address.");
+            return modelAndView;
         }
-        return "index";
+
+        user.get().setResetToken((UUID.randomUUID().toString()));
+        userService.save(user.get());
+
+        String appUrl = request.getScheme() + "://" + request.getServerName();
+        emailService.sendMail(user.get(),appUrl);
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("newUser",user.get());
+        redirectAttributes.addFlashAttribute("success","A password reset link has been sent to "+user.get().getEmail());
+
+        return modelAndView;
     }
 
     @GetMapping("/reset")
@@ -131,27 +135,28 @@ public class UserController {
 
 
     @PostMapping("/logout")
-    public ModelAndView logout(HttpServletRequest request){
+    public ModelAndView logout(HttpServletRequest request, RedirectAttributes redirectAttributes){
         HttpSession session = request.getSession();
+        redirectAttributes.addFlashAttribute("error","Please login first");
         session.invalidate();
         return new ModelAndView("redirect:/");
     }
 
     @PostMapping("/updatePass")
-    public String updatePassword(@RequestParam("token") String token, @RequestParam("password") String password, Model model){
+    public ModelAndView updatePassword(@RequestParam("token") String token, @RequestParam("password") String password,RedirectAttributes redirectAttributes){
         Optional<User> optionalUser = userService.findByResetToken(token);
-
         if (!optionalUser.isPresent()) {
-            model.addAttribute("error", "Password reset failed");
-            return "index";
+            redirectAttributes.addFlashAttribute("error", "Password reset failed");
+            return new ModelAndView("redirect:/");
         }
+        ModelAndView modelAndView = new ModelAndView("index");
         optionalUser.get().setPassword(password);
         optionalUser.get().setResetToken(null);
         userService.save(optionalUser.get());
-        model.addAttribute("newUser", optionalUser.get());
-        model.addAttribute("success","Password reset successful");
+        modelAndView.addObject("newUser", optionalUser.get());
+        modelAndView.addObject("success","Password reset successful");
 
-        return "index";
+        return modelAndView;
     }
 
     @PutMapping("/users/{id}")

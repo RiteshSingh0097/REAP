@@ -64,7 +64,6 @@ public class RecognitionController {
         userService.revokeUserBadge(receivingUser, senderUser, recognition.getBadge());
         // Send recognition receiver an email on revocation of badge
         SimpleMailMessage badgeRevokedEmail = new SimpleMailMessage();
-        badgeRevokedEmail.setFrom("riteshsingh893@gmail.com");
         badgeRevokedEmail.setTo(receivingUser.getEmail());
         badgeRevokedEmail.setSubject("REAP - Recognition Revoked");
         badgeRevokedEmail.setText("Hi, " + recognition.getReceiverName() +
